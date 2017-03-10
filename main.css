@@ -61,6 +61,14 @@ body {
   cursor: pointer;
 }
 
+.menu_left_disable {
+  color: #868686;
+  padding: 0.5em;
+  white-space: nowrap;
+  cursor: default;
+  visibility: hidden;
+}
+
 #div_center {
   padding: 0.5em;
 }
