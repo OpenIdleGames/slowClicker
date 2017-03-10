@@ -214,6 +214,8 @@ var game = {
         }
         break;
       case 'end':
+        game.clickSize = 0;
+        game.autoCount = 0;
         game.addMsgs(['BURRRRRRRRP!!!!!',
           function() {
             game.score = 200;
@@ -222,9 +224,9 @@ var game = {
           function() {
             game.img_turtle.style.transition = 'opacity 2000ms linear'
             game.img_turtle.style.opacity = 0;
-            game.state = 'done';
           }
         ]);
+        game.state = 'done';
         break;
       case 'done':
         break;
