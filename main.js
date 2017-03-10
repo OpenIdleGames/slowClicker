@@ -80,7 +80,7 @@ var game = {
     });
   },
   msg: function(text) {
-    var waitTime = Math.max(text.length * 3000 / 25, 2000);
+    var waitTime = Math.max(text.length * 2500 / 25, 2000);
     game.div_msg.innerHTML = text;
     game.div_msg.style.transition = 'opacity 100ms linear';
     game.div_msg.style.opacity = 1;
@@ -163,7 +163,7 @@ var game = {
       case 'wait big 2':
         if (game.score >= 500) {
           game.addMsgs(['Wow! I\'m getting a little too big.', 
-          'I\'ll enable another upgrade you can spend some food on so I can shrink back down.',
+          'I\'ll enable another upgrade so you can spend some food and I can shrink back down.',
           function() {
             document.getElementById('div_af').className = 'menu_left';
           }
@@ -218,12 +218,24 @@ var game = {
         game.autoCount = 0;
         game.addMsgs(['BURRRRRRRRP!!!!!',
           function() {
-            game.score = 200;
-            game.autoCount = 0;
-          }, 'I feel so much better!', 'I don\'t think I want to play this any more.', 'Bye!',
-          function() {
-            game.img_turtle.style.transition = 'opacity 2000ms linear'
-            game.img_turtle.style.opacity = 0;
+            game.img_turtle.style.transformOrigin = '0% 0%';
+            game.img_turtle.style.transition = 'transform 1000ms linear';
+            game.img_turtle.style.transform = 'scale(0.1)';
+            setTimeout(function() {
+              game.img_turtle.style.transition = 'none';
+              game.img_turtle.style.transform = 'none';
+
+              game.score = 240;
+              game.changeSize(104);              
+              game.addMsgs([
+                'I feel so much better!', 'I don\'t think I want to play this any more.', 'Bye!',
+                function() {
+                  game.img_turtle.style.transition = 'opacity 2000ms linear'
+                  game.img_turtle.style.opacity = 0;
+                }
+              ]);
+            }
+            ,1000);
           }
         ]);
         game.state = 'done';
