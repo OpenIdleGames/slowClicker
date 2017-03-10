@@ -226,7 +226,7 @@ var game = {
           }
         ]);
         break;
-      case 'done';
+      case 'done':
         break;
     }
   }
