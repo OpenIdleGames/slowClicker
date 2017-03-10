@@ -29,6 +29,7 @@ var game = {
     document.getElementById('menu_about').onclick = function() {game.showTab('about');};
     document.getElementById('div_fpc').onclick = game.buyFPCUpgrade;
     document.getElementById('div_af').onclick = game.buyAFUpgrade;
+    document.getElementById('div_bf').onclick = game.buyBFUpgrade;
     
     setTimeout(function() {
       game.addMsgs(['Hello!', 
@@ -57,6 +58,9 @@ var game = {
     game.score -= 500;
   },
   buyBFUpgrade: function() {
+    game.foodQuality = 5;
+    document.getElementById('div_bf').className = 'menu_left_disable';
+    game.score -= 1000;
   },
   changeSize: function(size) {
     game.div_size.style.height = size + 'px';
@@ -186,6 +190,43 @@ var game = {
         }
         break;
       case 'wait for third upgrade':
+        if (game.foodQuality >= 5) {
+          game.addMsgs(['Ahhhh. Feeling better again.', 'That was my last upgrade though so we better be careful.']);
+          game.state = 'wait big 4';
+        }
+        break;
+      case 'wait big 4':
+        if (game.score >= 2000) {
+          game.addMsgs(['This is not good.', 'That was the last upgrade I had.']);
+          game.state = 'wait big 5';
+        }
+        break;
+      case 'wait big 5':
+        if (game.score >= 5000) {
+          game.addMsgs(['I don\'t feel so good.']);
+          game.state = 'wait big final';
+        }
+        break;
+      case 'wait big final':
+        if (game.score >= 10000) {
+          game.addMsgs(['OWIEEEEE!!!!!!']);
+          game.state = 'end';
+        }
+        break;
+      case 'end':
+        game.addMsgs(['BURRRRRRRRP!!!!!',
+          function() {
+            game.score = 200;
+            game.autoCount = 0;
+          }, 'I feel so much better!', 'I don\'t think I want to play this any more.', 'Bye!',
+          function() {
+            game.img_turtle.style.transition = 'opacity 2000ms linear'
+            game.img_turtle.style.opacity = 0;
+            game.state = 'done';
+          }
+        ]);
+        break;
+      case 'done';
         break;
     }
   }
