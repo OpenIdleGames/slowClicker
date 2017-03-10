@@ -37,7 +37,7 @@ body {
   cursor: pointer;
 }
 
-#div_content {
+#div_game {
   display: flex;
   flex-direction: row;
 }
@@ -50,6 +50,7 @@ body {
 }
 
 .menu_left {
+  color: #3a3a3a;
   padding: 0.5em;
   white-space: nowrap;
 }
@@ -67,13 +68,42 @@ body {
   display: none;
 }
 
+#div_turtlePlusMessage {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 #img_turtle {
-  transform: scaleX(-1);
+  transform: scale(0.75,0.75);
+  transform-origin: 0% 0%;
   width: 72;
   height: 61;
   padding: 0.1em;
   margin-left: 0.2em;  
+  /*backface-visibility: hidden;*/
 }
+
+/*
+@keyframes wiggle {
+  0% {
+    transform: scaleX(-1) rotate(0deg);
+  }
+  33% {
+    transform: scale(-1.05,1.05) rotate(5deg);
+  }
+  66% {
+    transform: scale(-1.05,1.05) rotate(-5deg);
+  }
+  100% {
+    transform: scaleX(-1) rotate(0deg);
+  }
+}
+
+#img_turtle:hover {
+  animation: wiggle 1s 1;
+}
+*/
 
 #div_message {
   font-size: large;
@@ -82,6 +112,22 @@ body {
   background-color: #a5e67a;
   margin-left: 0.5em;
   margin-top: 0.5em;
-  opacity: 0;
+  /*opacity: 0;*/
 }
 
+#div_stats {
+  display: none;
+  padding: 0.5em;
+}
+
+#div_about {
+  display: none;
+  padding: 0.5em;
+  font-family: cursive;
+  font-size: x-large;
+}
+
+#img_louis {
+  width: 288;
+  height: 243;
+}

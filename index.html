@@ -1,30 +1,45 @@
 <html>
   <head>
     <title>Slow Clicker</title>
+    <link rel='icon' href='./favicon.ico?v=2'>
     <link rel='stylesheet' type='text/css' href='./main.css'>
   </head>
   <body>
     <div id='div_header'>
       Slow Clicker
+      <!--
       <img id='img_turtle' src='./turtle2.png'>
       <div id='div_message'>Hello! Welcome to Slow Clicker!</div>
+      -->
     </div>
     <div id='div_menu'>
-      <div class='menu_top'>Menu1</div>
-      <div class='menu_top'>Menu2</div>
-      <div class='menu_top'>Menu3</div>
+      <div class='menu_top' id='menu_game'>Game</div>
+      <div class='menu_top' id='menu_stats'>Stats</div>
+      <div class='menu_top' id='menu_about'>About</div>
     </div>
-    <div id='div_content'>
+    <div id='div_game'>
       <div id='div_left'>
         <div class='menu_left'>Upgrade 1</div>
         <div class='menu_left'>Upgrade 2</div>
         <div class='menu_left'>Upgrade 3</div>
       </div>
       <div id='div_center'>
-        this is center text
-
+        <div id='div_turtlePlusMessage'>
+          <img id='img_turtle' src='./turtleflop.png'>
+          <div id='div_message'>Hello! Welcome to Slow Clicker!</div>
+        </div>
       </div>
     </div>   
+    <div id='div_stats'>
+      here are your stats
+    </div>
+    <div id='div_about'>
+      <img id='img_louis' src='./turtle.png'>
+      Hi. 
+      <br>My name's Louis and this is my first game. 
+      <br>Please take it slow so that you and I can both enjoy the experience. 
+      <br>Thanks and good luck!
+    </div>
     <script src='./main.js'></script>
   </body>
 </html>
