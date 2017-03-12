@@ -207,13 +207,21 @@ var game = {
         break;
       case 'wait big 5':
         if (game.score >= 5000) {
-          game.addMsgs(['I don\'t feel so good.']);
+          game.addMsgs([function() {
+            game.img_turtle.src = './turtleflop_sick1.png';
+          },'I don\'t feel so good.']);
+          game.state = 'wait big 6';
+        }
+        break;
+      case 'wait big 6':
+        if (game.score >= 9000) {
+          game.img_turtle.src = './turtleflop_sick2.png';
+          game.addMsgs(['OWIEEEEE!!!!!!']);
           game.state = 'wait big final';
         }
         break;
       case 'wait big final':
         if (game.score >= 10000) {
-          game.addMsgs(['OWIEEEEE!!!!!!']);
           game.state = 'end';
         }
         break;
@@ -230,7 +238,8 @@ var game = {
               game.img_turtle.style.transform = 'none';
 
               game.score = 240;
-              game.changeSize(104);              
+              game.changeSize(104); 
+              game.img_turtle.src = './turtleflop.png';             
               game.addMsgs([
                 'I feel so much better!', 'I don\'t think I want to play this any more.', 'Bye!',
                 function() {
