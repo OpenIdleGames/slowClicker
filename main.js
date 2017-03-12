@@ -24,6 +24,7 @@ var game = {
     game.div_score = document.getElementById('div_score');
     game.img_turtle = document.getElementById('img_turtle');
     game.div_stats_data = document.getElementById('div_stats_data');
+    document.getElementById('body').ontouchend = function(e) {e.preventDefault();};
     document.getElementById('menu_game').onclick = function() {game.showTab('game');};
     document.getElementById('menu_stats').onclick = function() {game.showTab('stats');};
     document.getElementById('menu_about').onclick = function() {game.showTab('about');};
@@ -37,6 +38,9 @@ var game = {
         'Welcome to my game.', 
         function() {game.clickSize = 1; 
           game.img_turtle.onclick = game.click;
+          document.getElementById('body').ontouchend = function(e) {e.preventDefault(); e.target.click()};
+          game.img_turtle.ontouchstart = game.mouseDown;
+          game.img_turtle.ontouchend = game.mouseUp;
           game.img_turtle.onmousedown = game.mouseDown;
           game.img_turtle.onmouseup = game.mouseUp;
         },
