@@ -71,7 +71,11 @@ var game = {
     game.size = size;
   },
   showScore: function() {
-    game.div_score.innerHTML = 'Food: ' + game.score;
+    if (game.state !== 'done') {
+      game.div_score.innerHTML = 'Food: ' + game.score;
+    } else {
+      game.div_score.innerHTML = '';
+    }
   },
   showTab: function(tabName) {
     ['game', 'stats', 'about'].forEach(function(v) {
@@ -129,9 +133,13 @@ var game = {
     game.img_turtle.style.transform = '';
   },
   updateStats: function() {
-    var curTime = Date.now();
-    var playSeconds = Math.round((curTime - game.startTime) / 1000);
-    game.div_stats_data.innerHTML = 'Food: ' + game.score + '<br>Clicks: ' + game.totalClicks + '<br>Play time: ' + playSeconds + ' seconds';
+    if (game.state !== 'done') {
+      var curTime = Date.now();
+      var playSeconds = Math.round((curTime - game.startTime) / 1000);
+      game.div_stats_data.innerHTML = 'Food: ' + game.score + '<br>Clicks: ' + game.totalClicks + '<br>Play time: ' + playSeconds + ' seconds';
+    } else {
+      game.div_stats_data.innerHTML = '';
+    }
   },
   update: function() {
     game.score += game.autoCount * game.foodQuality;
@@ -241,10 +249,16 @@ var game = {
               game.changeSize(104); 
               game.img_turtle.src = './turtleflop.png';             
               game.addMsgs([
-                'I feel so much better!', 'I don\'t think I want to play this any more.', 'Bye!',
+                'Whew! I feel so much better!', 'I don\'t think I want to play this any more.', 'Bye!',
                 function() {
                   game.img_turtle.style.transition = 'opacity 2000ms linear'
                   game.img_turtle.style.opacity = 0;
+                  setTimeout(function() {
+                    document.getElementById('div_stats_text').innerHTML = 'The game is over.';
+                    document.getElementById('img_louis_stats').style.visibility = 'hidden';
+                    document.getElementById('div_about').innerHTML = 'Sorry, I don\'t want to play this game any more.';
+                  }
+                  , 2000);
                 }
               ]);
             }
@@ -254,6 +268,7 @@ var game = {
         game.state = 'done';
         break;
       case 'done':
+
         break;
     }
   }
